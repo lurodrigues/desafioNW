@@ -1,0 +1,155 @@
+
+body{
+    background-color: #f5f7fa;
+}
+
+.header{
+    width: 100%;
+    height: 70px;
+    padding: 10px 1rem!important;
+    background-color: #ffffff;
+}
+.header__p-2 {
+    padding: 0px .5rem!important;
+}
+
+
+.logo {
+    padding: 11px 50px;
+    background-color: #f5f7fa;
+    color: #aab2bd;
+    margin-left: 40px;
+    height: 45px;
+    width: 200px;
+}
+
+
+.user {
+    margin: 0px;
+    text-align: center;
+    line-height: 50px;
+}
+.user-thumb {
+    padding: 15px !important;
+    color: #e0e4e8;
+    font-size: 20px;
+    border-width: 2px !important;
+    border-color: #e0e4e8 !important;
+}
+
+
+.nav-title {
+    font-size: 20px;
+    margin-left: 40px;
+}
+
+.table-dashboard {
+    min-width: 1035px;
+}
+
+.content {
+    padding: 50px 30px;
+}
+.content-table {
+    margin-top: 35px;
+    color: #646464;
+    user-select: none;
+    text-align: center;
+}
+
+
+@media(max-width:1090px){
+    .content-table {
+        overflow-y: hidden;
+        overflow-x: overlay;
+    }
+
+}
+.content-table-tr {
+    background: #ffffff;
+    border: 4px solid #f5f7fa;
+}
+
+.content-table-first {
+    border-top-left-radius: 15px; 
+    border-bottom-left-radius: 15px;
+}
+
+.content-table-last {
+    border-bottom-right-radius: 15px; 
+    border-top-right-radius: 15px; 
+}
+.content-table-thead{
+    color: #aab2bd;
+    font-size: small;
+}
+
+.table-last__icon {
+    width: 10px;
+    padding: 0;
+    padding-left: 15px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: none;
+}
+    
+.btn-new{
+    min-width: 130px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+
+.btn-new-content{
+    padding: 6px 30px;
+    border-radius: 10px;
+}
+
+
+.input-icon {
+    background: white;
+    color: #aab2bd;
+}
+
+.input-content {
+    border-left: none;
+    padding-left: 5px;
+}
+
+.input-content::placeholder {
+    font-style: italic;
+    color: #aab2bd;
+}
+
+.active-col {
+    font-weight: bold;
+    font-size: 16px;
+}
+.active-title {
+    font-weight: bold;
+}
+
+.sort-by {
+    width: 10px;
+    line-height: 0;
+    padding-top: 13px;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.sort-by__icon {
+    line-height: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+

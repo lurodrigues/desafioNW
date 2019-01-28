@@ -26,7 +26,7 @@ var characters = [
         damage: '340',
         attackSpeed: '1.3',
         moveSpeed: '320',
-        thumbnail: 'thumb'
+        thumbnail: '../style/img/heroi_10.gif'
     },
     
     /* char #02 */
@@ -40,7 +40,7 @@ var characters = [
         damage: '180',
         attackSpeed: '1.3',
         moveSpeed: '330',
-        thumbnail: 'thumb'
+        thumbnail: '../style/img/heroi_05.gif'
     },
     
     /* char #03 */
@@ -54,7 +54,7 @@ var characters = [
         damage: '130',
         attackSpeed: '1.1',
         moveSpeed: '300',
-        thumbnail: 'thumb'
+        thumbnail: '../style/img/heroi_06.gif'
     }
     
 ]

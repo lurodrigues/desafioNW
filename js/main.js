@@ -30,6 +30,8 @@ challenge.controller('challengeCtrl', function($scope) {
     
     
     
+    
+    
     /* -- Funções -- */
     $scope.orderByFunc = function (order){
         

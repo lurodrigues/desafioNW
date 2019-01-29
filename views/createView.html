@@ -1,11 +1,12 @@
  <!-- Challenge Controller -->
-<div ng-controller="createCtrl">
+<div ng-controller="createCtrl" ng-init="getHeroe(true)">
         
     <!-- Cabeçalho da Pagina Atual -->
     <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+        
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link nav__title">Novo Herói</a>
+                <a class="nav-link nav__title">{{title}}</a>
             </li>
         </ul>
 
@@ -18,123 +19,145 @@
         <!-- Conteúdo da Tela -->
         <div class="content">
 
+            <form>
 
-        <form class="form__container">
-            
-            <!-- Linha 1 -->
-            <div class="form-row">
-                
-                <!-- coluna 1 -->
-                <div class="form-row col-md-5 col-12" >
-                     
-                    <!-- NOME -->
-                     <div class="form-group col-12" >
-                        <label class="form__label" for="HeroeFormName">Nome</label>
-                        <input class="form-control" id="HeroeFormName" placeholder="">
+                <div class="form__container">
+                    <!-- Linha 1 -->
+                    <div class="form-row">
+
+                        <!-- coluna 1 -->
+                        <div class="form-row col-md-5 col-12">
+
+                            <!-- NOME -->
+                             <div class="form-group col-12" >
+                                <label class="form__label" for="HeroeFormName">Nome</label>
+                                <input class="form-control" id="HeroeFormName" placeholder="" ng-model="heroe.name">
+                            </div></div>
+
+                        <!-- coluna 2 -->
+                        <div class="form-row col-md-7 col-12">
+
+                            <!-- ESPECIALIDADES -->
+                            <div class="form-group col-sm-6  col-12">
+                                <label class="form__label">Especialidades</label>
+
+                                <div class="dropdown">
+                                    <button class = "btn btn-outline-light dropdown-toggle dropdown__toggle" 
+                                            type  = "button" 
+                                            id    = "dropdownMenuButton"
+                                            data-toggle   = "dropdown" 
+                                            aria-haspopup = "true" 
+                                            aria-expanded = "false">
+
+                                        <span class="dropdown__span">Dropdown button</span>
+                                    </button>
+
+                                    <div class="dropdown-menu dropdown__menu" aria-labelledby="dropdownMenuButton">
+                                        <div class="dropdown-item" >
+                                            <input type="checkbox" id="scales" name="scales">
+                                            <label for="scales">Scales</label>
+                                        </div>
+
+                                        <div class="dropdown-item" >
+                                            <input type="checkbox" id="scales" name="scales">
+                                            <label for="scales">Scales</label>
+                                        </div>
+
+                                        <div class="dropdown-item" >
+                                            <input type="checkbox" id="scales" name="scales">
+                                            <label for="scales">Scales</label>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+    </div>
+
+                            <!-- CLASSES -->
+                            <div class="form-group col-sm-6   col-12">
+                                <label class="form__label">Classes</label>
+                                <select class="custom-select">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+    </div>
+                        </div>
+                        
                     </div>
-                     
-                </div>
-                
-                <!-- coluna 2 -->
-                <div class="form-row col-md-7 col-12">
-                    
-                    <!-- ESPECIALIDADES -->
-                    <div class="form-group col-sm-6  col-12">
-                        <label class="form__label">Especialidades</label>
 
-                        <div class="dropdown">
-                            <button class = "btn btn-outline-light dropdown-toggle dropdown__toggle" 
-                                    type  = "button" 
-                                    id    = "dropdownMenuButton"
-                                    data-toggle   = "dropdown" 
-                                    aria-haspopup = "true" 
-                                    aria-expanded = "false">
-                                
-                                <span class="dropdown__span">Dropdown button</span>
-                            </button>
-                            
-                            <div class="dropdown-menu dropdown__menu" aria-labelledby="dropdownMenuButton">
-                                <div class="dropdown-item" >
-                                    <input type="checkbox" id="scales" name="scales">
-                                    <label for="scales">Scales</label>
-                                </div>
-                                
-                                <div class="dropdown-item" >
-                                    <input type="checkbox" id="scales" name="scales">
-                                    <label for="scales">Scales</label>
-                                </div>
-                                
-                                <div class="dropdown-item" >
-                                    <input type="checkbox" id="scales" name="scales">
-                                    <label for="scales">Scales</label>
-                                </div>
-                                
+                    <!-- Linha 2 -->
+                    <div class="form-row">
+
+                        <!-- coluna 1 -->
+                        <div class="form-row col-md-5 col-12" >
+
+                            <div class="form-group col-sm-6 col-12" >
+                                <label class="form__label"for="inputEmail4">Vida</label>
+                                <input type="number" class="form-control" id="inputEmail4" placeholder="" ng-model="heroe.health_points">
                             </div>
 
+                            <div class="form-group col-sm-6 col-12" >
+                                <label class="form__label"for="inputEmail4">Defesa</label>
+                                <input type="number" class="form-control" id="inputEmail4" placeholder="" ng-model="heroe.defense">
+                            </div>
+                            
+                        </div>
+
+                        <!-- coluna 2 -->
+                        <div class="form-row col-md-7 col-12">
+
+                            <div class="form-group col-sm-4  col-12">
+                                <label class="form__label"for="inputPassword4">Dano</label>
+                                <input type="number" class="form-control" id="inputPassword4" placeholder="" ng-model="heroe.damage">
+                            </div>
+
+                            <div class="form-group col-sm-4   col-12">
+                                <label class="form__label"for="inputPassword4">Vel. de Ataque</label>
+                                <input type="number" class="form-control" id="inputPassword4" placeholder="" ng-model="heroe.attack_speed">
+                            </div>
+
+                            <div class="form-group col-sm-4   col-12">
+                                <label class="form__label"for="inputPassword4">Vel. de Movimento</label>
+                                <input type="number" class="form-control" id="inputPassword4" placeholder="" ng-model="heroe.movement_speed">
+                            </div>
+                            
                         </div>
                     </div>
                     
-                    <!-- CLASSES -->
-                    <div class="form-group col-sm-6   col-12">
-                        <label class="form__label">Classes</label>
-                        <select class="custom-select">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
                 </div>
-            </div>
-            
-            <!-- Linha 2 -->
-            <div class="form-row">
                 
-                <!-- coluna 1 -->
-                <div class="form-row col-md-5 col-12" >
+                <div class="form__container form__image_container">
+                    <p class="form__title">Galeria de Personagens</p>
                     
+                    <div ng-repeat = "id in listImage track by $index"
+                         ng-click  = "selectedImage(id, $index)"
+                         ng-class  = "activeImage == $index ? activeClass : '' "
+                         
+                         class="form__image_list" 
+                         style="background-image: url('{{url+id}}');"></div>
                     
-                    <div class="form-group col-sm-6 col-12" >
-                        <label class="form__label"for="inputEmail4">Vida</label>
-                        <input type="number" class="form-control" id="inputEmail4" placeholder="">
-                    </div>
+                </div>
+                
+                <div class="form__container_btn">
+                    
+                    <button class="btn btn-secondary form__btn" ng-click="cancel()">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                    
+                    <button class="btn btn-primary form__btn" ng-click="save()">
+                        <i class="fas fa-check"></i> Salvar
+                    </button>
+                
+                
+                </div>
 
-                    
-                    <div class="form-group col-sm-6 col-12" >
-                        <label class="form__label"for="inputEmail4">Defesa</label>
-                        <input type="number" class="form-control" id="inputEmail4" placeholder="">
-                    </div>
-                </div>
-                
-                <!-- coluna 2 -->
-                <div class="form-row col-md-7 col-12">
-                    
-                    
-                    <div class="form-group col-sm-4  col-12">
-                        <label class="form__label"for="inputPassword4">Dano</label>
-                        <input type="number" class="form-control" id="inputPassword4" placeholder="">
-                    </div>
-                    
-                    
-                    <div class="form-group col-sm-4   col-12">
-                        <label class="form__label"for="inputPassword4">Vel. de Ataque</label>
-                        <input type="number" class="form-control" id="inputPassword4" placeholder="">
-                    </div>
-                    
-                    
-                    <div class="form-group col-sm-4   col-12">
-                        <label class="form__label"for="inputPassword4">Vel. de Movimento</label>
-                        <input type="number" class="form-control" id="inputPassword4" placeholder="">
-                    </div>
-                </div>
-                
-            </div>
-            
-        </form>
+            </form>
                 
         <!-- FIM: Conteúdo -->
         </div>
-
+        
     <!-- FIM: Conteúdo -->
     </section>
         

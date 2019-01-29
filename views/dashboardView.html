@@ -1,6 +1,9 @@
 
  <!-- Challenge Controller -->
-<div ng-controller="dashboardCtrl">
+<div ng-controller="dashboardCtrl" ng-init="getHeroes(true)">
+    
+    
+    
         
         
     <!-- Cabeçalho da Pagina Atual -->
@@ -15,11 +18,10 @@
     </nav>
 
     <!-- Conteúdo -->
-    <section class="container-fluid">
-
-        <!-- Conteúdo da Tela -->
+    <section class="container-fluid" >
+        
         <div class="content">
-
+      
             <!-- Busca e Botão NOVO -->
             <div class="row">
 
@@ -51,7 +53,7 @@
                 <!-- Botão NOVO -->
                 <div class="new__btn">
 
-                    <button class="btn btn-primary new__btn-container">
+                    <button class="btn btn-primary new__btn-container" ng-click="createHereo()">
                         <i class="fas fa-plus-circle"></i> Novo
                     </button>
 
@@ -124,7 +126,7 @@
                             <td class="table__first-child" >
 
                                 <div class="table__thumbnail"
-                                     style="background-image: url('{{char.photo}}');">
+                                     style="background-image: url('{{char.photos}}');">
                                 </div>
 
                             </td>
@@ -138,8 +140,12 @@
 
                             <!-- Botões de Editar e Deletar-->
                             <td class="table__last-child">
-                                <i class="btn btn-outline-primary table__last-child_icon fas fa-trash"></i>
-                                <i class="btn btn-outline-primary table__last-child_icon far fa-edit" ></i>
+                                
+                                <i class="btn btn-outline-primary table__last-child_icon fas fa-trash" 
+                                   ng-click="deleteHereo(char, true)"></i>
+                                
+                                <i class="btn btn-outline-primary table__last-child_icon far fa-edit" 
+                                   ng-click="editHereo(char, true)"></i>
                             </td>
 
                         <!-- FIM: 'Repeat' da Lista dos Personagens -->

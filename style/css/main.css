@@ -163,10 +163,22 @@ body {
   color: #aab2bd;
 }
 
+.form__btn {
+  margin: 5px;
+  padding: 5px 30px !important;
+}
+
 .form__container {
   background: #ffffff;
   padding: 30px;
   border-radius: 10px;
+}
+
+.form__container_btn {
+  margin-top: 40px;
+  border-radius: 10px;
+  float: right;
+  margin-bottom: 60px;
 }
 
 .form__group {
@@ -176,6 +188,31 @@ body {
 .form__label {
   font-size: 12px;
   color: #8f9194;
+}
+
+.form__title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.form__image_container {
+  margin-top: 50px;
+}
+
+.form__image_list {
+  width: 120px;
+  height: 120px;
+  margin: 10px;
+  padding: 40px;
+  display: inline-block;
+  border: 3px solid #f5f7fa;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.form__image_active {
+  border-color: #aab2bd;
 }
 
 .dropdown__toggle {
@@ -200,4 +237,8 @@ body {
 
 .dropdown__menu {
   width: 100%;
+}
+
+.alert {
+  margin: 40px 20px 0px 20px;
 }

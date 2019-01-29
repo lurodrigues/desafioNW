@@ -10,13 +10,14 @@ challenge.config(function($routeProvider) {
     })
     .when("/Create", {
         templateUrl : "../views/createView.html",
-        controller: 'createCtrl'
     })
-    .when("/Edit", {
-        templateUrl : "../views/editView.html",
-        controller: 'editCtrl'
-    });
+    .when("/Edit/:id", {
+        templateUrl : "../views/createView.html",
+    })
+    .otherwise({redirectTo:'/'});;
 });
+
+
 
 
 

@@ -20,7 +20,8 @@
     </head>
 
     
-    <body>
+    <body ng-app="challenge" >
+        
         <!-- Cabeçalho -->
         <section>
             
@@ -47,170 +48,10 @@
             <!-- FIM: Cabeçalho do Site -->
             </div>  
             
-            <!-- Cabeçalho da Pagina Atual -->
-            <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link nav__title">Meus Personagens</a>
-                    </li>
-                </ul>
-                
-            <!-- FIM: Cabeçalho da Pagina Atual -->
-            </nav>
-    
         <!-- FIM: Cabeçalho -->
         </section>
         
-        <!-- Conteúdo -->
-        <section ng-app="challenge" class="container-fluid">
-
-            <!-- Challenge Controller -->
-            <div ng-controller="challengeCtrl">
-                
-                <!-- Conteúdo da Tela -->
-                <div class="content">
-                    
-                    <!-- Busca e Botão NOVO -->
-                    <div class="row">
-                        
-                        <!-- Busca -->
-                        <div class="col-sm">
-                            
-                            <!-- Àrea de Busca -->
-                            <div class="input-group mb-3">
-                                
-                                <!-- Icone de Busca -->
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text seach__input-icon" id="basic-addon1">
-                                        <i class="fas fa-search"></i>
-                                    </span>
-                                </div>
-                                
-                                
-                                <!-- Input de Busca -->
-                                <input type        = "text" 
-                                       class       = "form-control seach__input-content" 
-                                       placeholder = "Buscar por nome, classe, especilidade, outros" 
-                                       /> 
-                            
-                            <!-- FIM: Àrea de Busca -->
-                            </div>
-                        
-                        <!-- FIM: Busca -->
-                        </div>
-                        
-                        <!-- Botão NOVO -->
-                        <div class="new__btn">
-                            
-                            <button class="btn btn-primary new__btn-container">
-                                <i class="fas fa-plus-circle"></i> Novo
-                            </button>
-                        
-                        <!-- FIM: Botão NOVO -->
-                        </div>
-                        
-                    <!-- FIM: Busca e Botão +NOVO -->
-                    </div>
-                    
-                    <!-- Tabela -->
-                    <div class="row table__container table-borderless">
-                        
-                        <!-- Inicio da Tabela -->
-                        <table class="table table__width-size color-red">
-
-                            <!-- Cabeçalho da Tabela -->
-                            <thead>
-
-                                <!-- Titulos de cada coluna -->
-                                <tr class="table__thead">
-
-                                    <!-- Titulo Vazio, correspondente a coluna das Thumbnails -->
-                                    <td scope="col" ></td>
-                                    
-
-                                    <!-- 'Repeat' dos Nomes dos Atributos dos Personagens -->
-                                    <td scope="col" 
-                                        ng-repeat="a in attributeList track by $index"
-                                        ng-click ="orderByFunc(a.orderName)"
-                                        ng-class ="activeOrder == a.orderName ? 'table__active' : ''">
-
-                                        <span> {{a.title}} </span>
-                                        
-                                        <!-- Visibilidade das Setas Up e Down Dependendo da Ordenação -->
-                                        <div class="table__btn-sort-by">
-                                            
-                                            <!-- Se a Ordenação estiver em ordem crescente -->
-                                            <i class    = "fas fa-sort-down table__btn-sort-by_icon"
-                                               ng-class = "nameTitle != a.orderName ? 'visible' : 'invisible'">
-                                            </i>
-                                            
-                                            <!-- Se a Ordenação estiver em ordem decrescente -->
-                                            <i class    = "fas fa-sort-up table__btn-sort-by_icon"
-                                               ng-class = "nameTitle != '-'+a.orderName ? 'visible' : 'invisible'">
-                                            </i>
-
-                                        <!-- FIM: Visibilidade das Setas Up e Down -->   
-                                        </div>
-                                    
-                                    <!-- FIM: 'Repeat' dos Nomes dos Atributos dos Personagens -->
-                                    </td>
-
-                                    
-                                    <!-- Titulo Vazio, correspondente a coluna doa botões -->
-                                    <td scope="col" ></td>
-                                    
-                                <!-- FIM: Titulos de cada coluna -->
-                                </tr>
-                                
-                            <!-- FIM: Tabela -->
-                            </thead>
-
-                            <!-- Conteúdo da Tabela -->
-                            <tbody>
-
-                                <!-- 'Repeat' da Lista dos Personagens -->
-                                <tr class="table__tr" 
-                                    ng-repeat="char in charList | orderBy: nameTitle ">
-
-                                    <td class="table__first-child" >
-                                        
-                                        <div class="table__thumbnail"
-                                             style="background-image: url('{{char.thumbnail}}');">
-                                        </div>
-                                    
-                                    </td>
-
-                                    <!-- 'Repeat' dos Atributos dos Personagens -->
-                                    <td class="table__middle-children"
-                                        ng-repeat="a in attributeList track by $index"
-                                        ng-class="activeOrder == a.orderName ? 'table__active-col' : ''" >{{char[a.orderName]}}</td>
-
-                                    <!-- Botões de Editar e Deletar-->
-                                    <td class="table__last-child">
-                                        <i class="btn btn-outline-primary table__last-child_icon fas fa-trash"></i>
-                                        <i class="btn btn-outline-primary table__last-child_icon far fa-edit" ></i>
-                                    </td>
-                                    
-                                <!-- FIM: 'Repeat' da Lista dos Personagens -->
-                                </tr>
-                            
-                            <!-- FIM: Conteúdo da Tabela -->
-                            </tbody>
-                            
-                        <!-- FIM: Inicio da Tabela -->
-                        </table>
-                        
-                    <!-- FIM: Tabela -->   
-                    </div>
-                    
-                <!-- FIM: Conteúdo -->
-                </div>
-                
-            <!-- FIM: Challenge Controller -->    
-            </div>
-            
-         <!-- FIM: Conteúdo -->
-        </section>
+       <div ng-view></div>
 
     </body>
     
@@ -224,12 +65,19 @@
             <script src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" ></script>
             <script src = "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"    ></script>
             <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"      ></script>
+            <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"    ></script>
+            
         </section>
         
         <!-- Scripts -->
         <section>
             <script src = "js/allData.js" ></script>
+            <script src = "js/crud.js"    ></script>
             <script src = "js/main.js"    ></script>
+            
+            <script src = "js/controllers/dashboardController.js" ></script>
+            <script src = "js/controllers/editController.js"      ></script>
+            <script src = "js/controllers/createController.js"    ></script>
         </section>
         
     </footer>

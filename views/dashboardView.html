@@ -1,27 +1,26 @@
 
  <!-- Challenge Controller -->
 <div ng-controller="dashboardCtrl" ng-init="getHeroes()">
-    
-    
-    
         
-        
-    <!-- Cabeçalho da Pagina Atual -->
+    <!-- Cabeçalho da Tela -->
     <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+        
+        <!-- Titulo da Tela -->
         <ul class="navbar-nav">
             <li class="nav-item active">
                 <a class="nav-link nav__title">Meus Personagens</a>
             </li>
         </ul>
 
-    <!-- FIM: Cabeçalho da Pagina Atual -->
+    <!-- FIM: Cabeçalho da Tela -->
     </nav>
 
-    <!-- Conteúdo -->
+    <!-- Conteúdo da Tela -->
     <section class="container-fluid" >
         
+        <!-- Conteúdo -->
         <div class="content">
-      
+            
             <!-- Busca e Botão NOVO -->
             <div class="row">
 
@@ -80,7 +79,10 @@
                             <td scope="col" ></td>
 
 
-                            <!-- 'Repeat' dos Nomes dos Atributos dos Personagens -->
+                            <!-- [Repeat] dos Nomes dos Atributos dos Personagens 
+                                 - orderByFunc: Ordena a tabela pelo titulo escolhido
+                                 - activeOrder: Deixa em edstaque o titulo escolhido para ordenar
+                            -->
                             <td scope="col" 
                                 ng-repeat="a in attributeList track by $index"
                                 ng-click ="orderByFunc(a.orderName)"
@@ -120,33 +122,37 @@
                     <!-- Conteúdo da Tabela -->
                     <tbody>
 
-                        <!-- 'Repeat' da Lista dos Personagens -->
-                        <tr class="table__tr" 
-                            ng-repeat="char in charList | orderBy: nameTitle | filter : searchHeroe ">
+                        <!-- [Repeat] da Lista dos Personagens 
+                             - orderBy: ordena a tabela com base no titulo escolhido 
+                             - filter : exibi apenas os resultados correspondentes a busca 
+                        -->
+                        <tr class     = "table__tr" 
+                            ng-repeat = "char in charList | orderBy: nameTitle | filter : searchHeroe ">
 
-                            <td class="table__first-child" >
+                            <!-- Coluna de Imagens -->
+                            <td class = "table__first-child" >
 
-                                <div class="table__thumbnail"
-                                     style="background-image: url('{{char.photos}}');">
+                                <div class = "table__thumbnail"
+                                     style = "background-image: url('{{char.photos}}');">
                                 </div>
 
                             </td>
 
-                            <!-- 'Repeat' dos Atributos dos Personagens -->
-                            <td class="table__middle-children"
-                                ng-repeat="a in attributeList track by $index"
-                                ng-class="activeOrder == a.orderName ? 'table__active-col' : ''" >
+                            <!-- [Repeat]: Coluna dos Atributos dos Personagens -->
+                            <td class     = "table__middle-children"
+                                ng-repeat = "a in attributeList track by $index"
+                                ng-class  = "activeOrder == a.orderName ? 'table__active-col' : ''" >
                                     {{char[a.orderName]}}
                             </td>
 
-                            <!-- Botões de Editar e Deletar-->
-                            <td class="table__last-child">
+                            <!-- Coluna de Botões de Editar e Deletar-->
+                            <td class = "table__last-child">
                                 
-                                <i class="btn btn-outline-primary table__last-child_icon fas fa-trash" 
-                                   ng-click="deleteHereo(char.id, $index)"></i>
+                                <i class    = "btn btn-outline-primary table__last-child_icon fas fa-trash" 
+                                   ng-click = "deleteHereo(char.id, $index)"></i>
                                 
-                                <i class="btn btn-outline-primary table__last-child_icon far fa-edit" 
-                                   ng-click="editHereo(char.id)"></i>
+                                <i class    = "btn btn-outline-primary table__last-child_icon far fa-edit" 
+                                   ng-click = "editHereo(char.id)"></i>
                             </td>
 
                         <!-- FIM: 'Repeat' da Lista dos Personagens -->
@@ -158,16 +164,15 @@
                 <!-- FIM: Inicio da Tabela -->
                 </table>
                 
-                
 
             <!-- FIM: Tabela -->   
             </div>
 
         <!-- FIM: Conteúdo -->
         </div>
-
-    <!-- FIM: Conteúdo -->
-    </section>
+        
+    <!-- FIM: Conteúdo da Tela -->
+    </section> 
         
         
 <!-- FIM: Challenge Controller -->    

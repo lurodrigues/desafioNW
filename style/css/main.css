@@ -4,6 +4,17 @@ body {
   background-color: #f5f7fa;
 }
 
+.background-loading {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  background-color: black;
+  opacity: 0.5;
+  top: 0;
+  display: none;
+}
+
 /* -- HEADER -- */
 .header {
   width: 100%;

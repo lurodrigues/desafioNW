@@ -9,7 +9,7 @@
         
         <!-- CSS -->
         <section>
-            <link rel= "stylesheet"  href= "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" >
+            <link rel= "stylesheet"  href= "node_modules/bootstrap/dist/css/bootstrap.min.css" >
             <link rel= "stylesheet"  href= "https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
             <link rel= "stylesheet"  href= "style/css/style.min.css" >
         </section>
@@ -21,6 +21,8 @@
 
     
     <body ng-app="challenge" >
+        
+        <div class="background-loading"></div>
         
         <!-- Cabeçalho -->
         <section>
@@ -51,8 +53,8 @@
         <!-- FIM: Cabeçalho -->
         </section>
         
+        
         <div ng-view></div>
-
     </body>
     
     
@@ -63,10 +65,10 @@
         <section>
             <script src = "https://code.jquery.com/jquery-3.3.1.slim.min.js"                          ></script>
             <script src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" ></script>
-            <script src = "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"    ></script>
-            <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"      ></script>
-            <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"    ></script>
             
+            <script src = "node_modules/angular/angular.min.js"                ></script>
+            <script src = "node_modules/angular-route/angular-route.min.js"    ></script>
+            <script src = "node_modules/bootstrap/dist/js/bootstrap.min.js"    ></script>
         </section>
         
         <!-- Scripts -->

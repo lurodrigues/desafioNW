@@ -1,7 +1,7 @@
 {
   "name": "gulp-style",
   "version": "1.0.0",
-  "description": "defasio para a New Way\u001b[D\u001b[D\u001b[\u001b[3~\u001b[3~\u001b[3~\u001b[3~\u001b[3~\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[D\u001b[D\u001b[D\u001b[\u001b[C\u001b[C\u001bwWay",
+  "description": "desafio para a NewWay",
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
@@ -23,8 +23,12 @@
     "webpack": "^4.29.0"
   },
   "dependencies": {
-    "@uirouter/angularjs": "^1.0.5",
-    "angular": "^1.6.9"
+    "angular": "^1.7.6",
+    "angular-animate": "^1.6.9",
+    "angular-route": "^1.7.6",
+    "angular-sanitize": "^1.7.6",
+    "angular-ui-bootstrap": "^2.5.6",
+    "bootstrap": "^4.2.1"
   },
   "main": "webpack.config.js",
   "scripts": {

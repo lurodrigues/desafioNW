@@ -143,10 +143,10 @@
                             <td class="table__last-child">
                                 
                                 <i class="btn btn-outline-primary table__last-child_icon fas fa-trash" 
-                                   ng-click="deleteHereo(char, true)"></i>
+                                   ng-click="deleteHereo(char.id, $index)"></i>
                                 
                                 <i class="btn btn-outline-primary table__last-child_icon far fa-edit" 
-                                   ng-click="editHereo(char.id, true)"></i>
+                                   ng-click="editHereo(char.id)"></i>
                             </td>
 
                         <!-- FIM: 'Repeat' da Lista dos Personagens -->
@@ -157,6 +157,8 @@
 
                 <!-- FIM: Inicio da Tabela -->
                 </table>
+                
+                
 
             <!-- FIM: Tabela -->   
             </div>

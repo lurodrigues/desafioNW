@@ -78,6 +78,8 @@ challenge.controller('createCtrl', ['$scope','$http', '$location', '$routeParams
         
         var http        = {};
         var result      = [];
+        var i = 0;
+        var idImage = 0;
         
         
     //------------------------------------------------------------
@@ -90,6 +92,14 @@ challenge.controller('createCtrl', ['$scope','$http', '$location', '$routeParams
             function mySuccess(response) {
                 $scope.heroe = response.data;
                 classID      = $scope.heroe.class_id;
+                
+                
+                 for ( i = 0; i< $scope.heroe.photos.length; i++){
+                     
+                     idImage = $scope.heroe.photos[i];
+                    $scope.activeImage[idImage] =  $scope.activeClass;
+                }
+//                
             }, 
 
             function myError(response) {
@@ -191,6 +201,20 @@ challenge.controller('createCtrl', ['$scope','$http', '$location', '$routeParams
     
     
     $scope.cancel = function (){
+        $scope.heroe        = {
+            id              : null,
+            class_id        : null,
+            name            : '',
+            health_points   : null,
+            defense         : null,
+            damage          : null,
+            attack_speed    : null,
+            movement_speed  : null,
+            class_name      : "",
+            specialties     : [],
+            photos          : []
+        };
+        
         $location.path('/');
     }
     
@@ -202,8 +226,9 @@ challenge.controller('createCtrl', ['$scope','$http', '$location', '$routeParams
         var _specialties = $scope.specialties.filter(function(f){  return f.check })
                                              .map   (function(e){  return e.id;   });
         
-        var _image       = Object.keys($scope.activeImage).filter(function(f){  return $scope.activeImage[f] })
-                                                          .map   (function(e){  return parseInt(e);   });
+        var _image       = Object.keys   ($scope.activeImage)
+                                 .filter (function(f){  return $scope.activeImage[f] })
+                                 .map    (function(e){  return parseInt(e);   });
         
         var _heroe        = {
             id              : $scope.heroe.id,
@@ -220,24 +245,29 @@ challenge.controller('createCtrl', ['$scope','$http', '$location', '$routeParams
         };
         
         
-        http = { method : "PUT", url : $scope.url+"/heroes/"+id, data:_heroe };
-            
-            $http(http).then(
-                
-                function mySuccess(response) {
-                    console.log('mySucces ', response.statusText);
-//                    $location.path('/');
-                    
-                    $scope.disabledScreen = false;
-                    //mesagem de sucesso - response.statusText;
-                }, 
+        
+        if (create) {
+             http = { method : "POST", url : $scope.url+"/heroes", data:_heroe };
+        }
+        else {
+            http = { method : "PUT", url : $scope.url+"/heroes/"+id, data:_heroe };
+        }
+        
+        
+        $http(http).then(
 
-                function myError(response) {
-                    console.log('myError', response.statusText);
-                    $scope.disabledScreen = false;
-                    // mesagem de erro - response.statusText;
-                }
-            );
+            function mySuccess(response) {
+                console.log('mySucces ', response.statusText);
+                $location.path('/');
+
+                $scope.disabledScreen = false;
+            }, 
+
+            function myError(response) {
+                console.log('myError', response.statusText);
+                $scope.disabledScreen = false;
+            }
+        );
         
 //        $location.path('/');
     }

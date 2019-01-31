@@ -103,11 +103,15 @@ challenge.controller('dashboardCtrl', ['$scope','$http', '$location', function (
                     specialties = result[i].specialties.map(function(item) {
                         return item['name'];
                     }).join (", ");
+                    
+                    result[i].photos = url + "/photos/" + result[i].photos[0];
 
                     result[i].specialties = specialties;
                 };
 
                 $scope.charList = result;
+                
+                console.log(result)
                 
             }, //FIM - função
 
@@ -120,40 +124,26 @@ challenge.controller('dashboardCtrl', ['$scope','$http', '$location', function (
     };
    
     
-    $scope.deleteHereo = function ( _item, _test ){
-        
-        var indexOf = $scope.charList.indexOf(_item );
-        
-    //------------------------------------------------------------
-        
-        $scope.charList.splice( indexOf, 1 );
+    $scope.deleteHereo = function ( _id, _index ){
         
         
-        if (_test ) { deleteItem_test( ); }
-        else         { deleteItem_API ( ); }
-        
-       
-    //------------------------------------------------------------
-        
-        
-        function deleteItem_test (){
-            characters.splice( indexOf, 1 );
-        }
-        
-        function deleteItem_API (){
-            http = { method : "DELETE", url : url+"/heroes/"+_id };
-            
-            $http(http).then(
-                
-                function mySuccess(response) {
-                    //mesagem de sucesso - response.statusText;
-                }, 
+        http = { method : "DELETE", url : url+"/heroes/"+_id };
 
-                function myError(response) {
-                    // mesagem de erro - response.statusText;
-                }
-            );
-        }
+        $http(http).then(
+
+            function mySuccess(response) {
+                console.log('mySucces ', response.statusText);
+                
+                $scope.charList.splice(_index, 1);
+
+                //mesagem de sucesso - response.statusText;
+            }, 
+
+            function myError(response) {
+                console.log('myError ', response.statusText);
+                // mesagem de erro - response.statusText;
+            }
+        );
         
     }
     

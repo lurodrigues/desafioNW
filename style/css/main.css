@@ -47,6 +47,10 @@ body {
   margin-left: 40px;
 }
 
+.nav__span {
+  cursor: pointer;
+}
+
 /* -- CONTENT -- */
 .content {
   padding: 50px 30px;
@@ -54,7 +58,7 @@ body {
 
 /* --  TABLE -- */
 .table__width-size {
-  min-width: 1045px;
+  min-width: 1060px;
 }
 
 .table__container {
@@ -109,11 +113,12 @@ body {
 }
 
 .table__thumbnail {
-  background-repeat: no-repeat;
   width: 60px;
   height: 60px;
-  background-position: center;
   margin: 5px;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .table__btn-sort-by {

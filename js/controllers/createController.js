@@ -249,13 +249,11 @@ challenge.controller('createCtrl', ['$scope','$http', '$location', '$routeParams
     /* SALVAR */
     $scope.save = function (){
         
-        // Ativa a div para impedir que o usuario clique em alguma coisa enquanto está sendo salvo as informações
-        $('.background-loading').css('display', 'block');
-        
         // Mensagens do alert
         var _alert = {
             success : create ? "O heroi foi criado com sucesso"    : "O heroi foi editado com sucesso",
-            error   : create ? "Não foi possivel criar esse heroi" : "Não foi possivel editar esse heroi"
+            error   : create ? "Não foi possivel criar esse heroi" : "Não foi possivel editar esse heroi",
+            blanck  : "Alguns campos não foram preenchidos. \nÉ necessario que todos campos estjam preenchidos para poder salvar"
         }
         
         // Retorna somente os IDs das Especialidades selecionadas
@@ -270,17 +268,30 @@ challenge.controller('createCtrl', ['$scope','$http', '$location', '$routeParams
         // Guarda as informações do heroi que serão salvas
         var _heroe = {
             id              : $scope.heroe.id,
-            class_id        : $scope.currClasses.id,
+            class_id        : ($scope.currClasses) ? $scope.currClasses.id : null,
             name            : $scope.heroe.name,
             health_points   : $scope.heroe.health_points,
             defense         : $scope.heroe.defense,
             damage          : $scope.heroe.damage,
             attack_speed    : $scope.heroe.attack_speed,
             movement_speed  : $scope.heroe.movement_speed,
-            class_name      : $scope.currClasses.name,
+            class_name      : ($scope.currClasses) ? $scope.currClasses.name : "",
             specialties     : _specialties,
             photos          : _image
         };
+        
+        // Valida se há algum campo vazio
+        for (var item in _heroe) {
+            
+            if (item !== "id")
+            if ( !_heroe[item] || ((item == "specialties" || item == "photos") && _heroe[item].length == 0) ) {
+                alert(_alert.blanck);
+                return;
+            }
+        }
+        
+        // Ativa a div para impedir que o usuario clique em alguma coisa enquanto está sendo salvo as informações
+        $('.background-loading').css('display', 'block');
         
         
         // Se estiver na tela de criação, então será feito um POST, se não, será feito um PUT

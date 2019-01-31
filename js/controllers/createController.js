@@ -17,6 +17,8 @@ challenge.controller('createCtrl', ['$scope','$http', '$location', '$routeParams
     var classID  = 0;                               // Salva o id da classe que foi selecionada
     var create   = ( url.local == '/Create' );      // Verifica se o usuario quer editar ou criar um heroi
     
+    var spcNum   = 0;                               // Mostra quantas especialidades foram selecionadas
+    
     
     /*  --------------------------------------------------------------------------------------------
         Para fazer a lista com as imagens já preexistente, eu precisaria que a API retornasse essa lista para mim, porém não exite função, por isso que salvei nesse array todos os IDs das imagens que foram salvas.
@@ -199,12 +201,27 @@ challenge.controller('createCtrl', ['$scope','$http', '$location', '$routeParams
                 // verifica se o heroi já apossui essa especialidade 
                 if (_spc[j].id == _heroSpc[i].id){
                     _spc[i].check = true;
+                    spcNum++;
                 }
             }
         }
         else {
             // apenas inverte o check da especialidade clicada
             _spc[index].check = !_spc[index].check;
+            
+            if (_spc[index].check) { spcNum++ }
+            else                   { spcNum-- }
+        }
+        
+        // Mostra quantas especialidades foram selecionadas
+        if (spcNum == 0) {
+            $scope.titleSpecialties = "Selecione uma ou mais opções";
+        }
+        else if (spcNum == 1) {
+            $scope.titleSpecialties = "1 item selecionado";
+        }
+        else{
+            $scope.titleSpecialties = spcNum + " itens selcionados";
         }
         
     }

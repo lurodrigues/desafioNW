@@ -61,6 +61,41 @@ var lastID = 3;
 
 var photosID = [25,26,27,28,29,30,31,32,33,34];
 
+var specialties = [
+    {
+        "id": 1,
+        "name": "Magia branca"
+    },
+    {
+        "id": 2,
+        "name": "Cura"
+    },
+    {
+        "id": 3,
+        "name": "Tanker"
+    },
+    {
+        "id": 4,
+        "name": "Invocação"
+    },
+    {
+        "id": 5,
+        "name": "Ataque à distância"
+    },
+    {
+        "id": 6,
+        "name": "Matador de chefes"
+    },
+    {
+        "id": 7,
+        "name": "Antitanque"
+    },
+    {
+        "id": 8,
+        "name": "Ataque em área"
+    }
+]
+
 
 
     

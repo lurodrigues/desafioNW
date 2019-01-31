@@ -11,18 +11,21 @@ challenge.controller('dashboardCtrl', ['$scope','$http', '$location', function (
     /* -- Variaveis -- */
     var contOrder = 0;
     var lastOrder = "";
-    var url = "http://heroes.qanw.com.br:8674";
+    var url       = "http://heroes.qanw.com.br:8674";
     
 
 //---------------------------------------------------------------------------
     
     /* -- ngBind -- */
     
-    $scope.charList     = [];
-    $scope.nameTitle    = "id";
-    $scope.activeOrder  = "";
-    $scope.photo        = "";
+    $scope.charList       = [];
+    $scope.nameTitle      = "id";
+    $scope.activeOrder    = "";
+    $scope.photo          = "";
     
+    $scope.seachType      = "";
+    $scope.searchHeroe    = "";
+        
     $scope.attributeList = [
         {title: "Nome"              , orderName: "name"           },
         {title: "Classe"            , orderName: "class_name"     },
@@ -72,6 +75,7 @@ challenge.controller('dashboardCtrl', ['$scope','$http', '$location', function (
      * */
     $scope.getHeroes = function ( _test ) {
         
+        
         var http        = {};
         var result      = [];
         var specialties = '';
@@ -79,75 +83,39 @@ challenge.controller('dashboardCtrl', ['$scope','$http', '$location', function (
         var i           = 0;
     
      //------------------------------------------------------------
-                
-        if (_test) { getItem_test( ); }
-        else       { getItem_API ( ); }
         
-     //------------------------------------------------------------
-        
-        /**
-         *  As vezes o API não carrega, então fiz essa versão teste, para poder continuar fazedo o desafio
-         * */
-        function getItem_test() {
-        
-            //Para não criar um ponteiro e alterar o arquivo original    
-            result = JSON.parse(JSON.stringify(characters));
 
-            //Leitura de cada item do objeto recebido
-            for ( i=0; i < result.length; i++){
-                photos = url+"/photos/"+result[i].photos[0];
+        http = { method : "GET", url : url+"/heroes" };
+
+        $http(http).then(
+
+            function mySuccess(response) {
+
+                result = response.data;
+
+                //Leitura de cada item do objeto recebido
+                for ( i; i < result.length; i++){
+                    
+                    //Zera a variavel
+                    specialties = '';
+
+                    //tranformando o objeto 'specialties' em string
+                    specialties = result[i].specialties.map(function(item) {
+                        return item['name'];
+                    }).join (", ");
+
+                    result[i].specialties = specialties;
+                };
+
+                $scope.charList = result;
                 
-                //Zera a variavel
-                specialties = '';
-                
-                //tranformando o objeto 'specialties' em string
-                specialties = result[i].specialties.map(function(item) {
-                  return item['name'];
-                }).join (", ");
-                
-                result[i].specialties = specialties;
-                result[i].photos = photos;
-                
-            }; //FIM --- for
-            
-            $scope.charList = result;
+            }, //FIM - função
 
-        }
-    
-        /**
-         *  Caso a API esteja carregando
-         * */
-        function getItem_API () {
+            function myError(response) {
+                $scope.charList = response.statusText;
+            }
+        );
 
-            http = { method : "GET", url : url+"/heroes" };
-
-            $http(http).then(
-                
-                function mySuccess(response) {
-
-                    result = response.data;
-
-                    //Leitura de cada item do objeto recebido
-                    for ( i; i < result.length; i++){
-                        //Zera a variavel
-                        specialties = '';
-                        
-                        //tranformando o objeto 'specialties' em string
-                        specialties = result[i].specialties.map(function(item) {
-                            return item['name'];
-                        }).join (", ");
-
-                        result[i].specialties = specialties;
-                    };
-
-                    $scope.charList = result;
-                }, 
-
-                function myError(response) {
-                    $scope.charList = response.statusText;
-                }
-            );
-        }
         
     };
    
@@ -190,13 +158,8 @@ challenge.controller('dashboardCtrl', ['$scope','$http', '$location', function (
     }
     
     
-    $scope.editHereo = function ( _item, _index ){
-        
-        var indexOf = $scope.charList.indexOf(_item );
-        
-     //------------------------------------------------------------
-        
-        $location.path('Edit/'+indexOf);
+    $scope.editHereo = function ( id ){
+        $location.path('Edit/' + id);
     }
     
     

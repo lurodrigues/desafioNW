@@ -1,5 +1,5 @@
  <!-- Challenge Controller -->
-<div ng-controller="createCtrl" ng-init="getHeroe(true)">
+<div ng-controller="createCtrl" ng-init="init()">
         
     <!-- Cabeçalho da Pagina Atual -->
     <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
@@ -39,6 +39,7 @@
 
                             <!-- ESPECIALIDADES -->
                             <div class="form-group col-sm-6  col-12">
+                                
                                 <label class="form__label">Especialidades</label>
 
                                 <div class="dropdown">
@@ -49,40 +50,47 @@
                                             aria-haspopup = "true" 
                                             aria-expanded = "false">
 
-                                        <span class="dropdown__span">Dropdown button</span>
+                                        <span class="dropdown__span">{{titleSpecialties}}</span>
                                     </button>
 
-                                    <div class="dropdown-menu dropdown__menu" aria-labelledby="dropdownMenuButton">
-                                        <div class="dropdown-item" >
-                                            <input type="checkbox" id="scales" name="scales">
-                                            <label for="scales">Scales</label>
-                                        </div>
-
-                                        <div class="dropdown-item" >
-                                            <input type="checkbox" id="scales" name="scales">
-                                            <label for="scales">Scales</label>
-                                        </div>
-
-                                        <div class="dropdown-item" >
-                                            <input type="checkbox" id="scales" name="scales">
-                                            <label for="scales">Scales</label>
-                                        </div>
-
+                                    <div class="dropdown-menu dropdown__menu" 
+                                         aria-labelledby="dropdownMenuButton"
+                                         ng-click="dropdownMenu($event)">
+                                        
+                                        <span ng-repeat="s in specialties">
+                                            <input type="checkbox" id="speciality_{{$index}}" 
+                                                   class="menu-speciality_input"
+                                                   ng-checked='{{s.check}}'>
+                                            
+                                            <label for="speciality_{{$index}}" 
+                                                   class="menu-speciality_label" 
+                                                   ng-click="changeEspecialities(s, $index, event)">
+                                                {{s.name}} 
+                                                <i class="fas fa-check menu-speciality_check"></i>
+                                                
+                                            </label>
+                                        </span>
+                                        
+                                        
+                                        
                                     </div>
 
                                 </div>
-    </div>
+
+                            </div>
 
                             <!-- CLASSES -->
                             <div class="form-group col-sm-6   col-12">
-                                <label class="form__label">Classes</label>
-                                <select class="custom-select">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                
+                                <label class       = "form__label">Classes</label>
+                                
+                                <select class      = "custom-select" 
+                                        ng-model   = "currClasses" 
+                                        ng-options = "c.name for c in classes" ng-click="changeClasses(currClasses)">
+                                    
+                                    <option value="" disabled selected> Selecione uma Opção </option>
                                 </select>
-    </div>
+                            </div>
                         </div>
                         
                     </div>
@@ -95,12 +103,12 @@
 
                             <div class="form-group col-sm-6 col-12" >
                                 <label class="form__label"for="inputEmail4">Vida</label>
-                                <input type="number" class="form-control" id="inputEmail4" placeholder="" ng-model="heroe.health_points">
+                                <input type="number" min="0" class="form-control" id="inputEmail4" placeholder="" ng-model="heroe.health_points">
                             </div>
 
                             <div class="form-group col-sm-6 col-12" >
                                 <label class="form__label"for="inputEmail4">Defesa</label>
-                                <input type="number" class="form-control" id="inputEmail4" placeholder="" ng-model="heroe.defense">
+                                <input type="number" min="0" class="form-control" id="inputEmail4" placeholder="" ng-model="heroe.defense">
                             </div>
                             
                         </div>
@@ -110,17 +118,17 @@
 
                             <div class="form-group col-sm-4  col-12">
                                 <label class="form__label"for="inputPassword4">Dano</label>
-                                <input type="number" class="form-control" id="inputPassword4" placeholder="" ng-model="heroe.damage">
+                                <input type="number" min="0" class="form-control" id="inputPassword4" placeholder="" ng-model="heroe.damage">
                             </div>
 
                             <div class="form-group col-sm-4   col-12">
                                 <label class="form__label"for="inputPassword4">Vel. de Ataque</label>
-                                <input type="number" class="form-control" id="inputPassword4" placeholder="" ng-model="heroe.attack_speed">
+                                <input type="number" min="0" class="form-control" id="inputPassword4" placeholder="" ng-model="heroe.attack_speed">
                             </div>
 
                             <div class="form-group col-sm-4   col-12">
                                 <label class="form__label"for="inputPassword4">Vel. de Movimento</label>
-                                <input type="number" class="form-control" id="inputPassword4" placeholder="" ng-model="heroe.movement_speed">
+                                <input type="number" min="0" class="form-control" id="inputPassword4" placeholder="" ng-model="heroe.movement_speed">
                             </div>
                             
                         </div>
@@ -133,20 +141,20 @@
                     
                     <div ng-repeat = "id in listImage track by $index"
                          ng-click  = "selectedImage(id, $index)"
-                         ng-class  = "activeImage == $index ? activeClass : '' "
+                         ng-class  = "activeImage[id]"
                          
                          class="form__image_list" 
-                         style="background-image: url('{{url+id}}');"></div>
+                         style="background-image: url('{{urlPhotos+id}}');"></div>
                     
                 </div>
                 
                 <div class="form__container_btn">
                     
-                    <button class="btn btn-secondary form__btn" ng-click="cancel()">
+                    <button class="btn btn-secondary form__btn" ng-click="cancel()" ng-disabled="disabledScreen">
                         <i class="fas fa-times"></i> Cancelar
                     </button>
                     
-                    <button class="btn btn-primary form__btn" ng-click="save()">
+                    <button class="btn btn-primary form__btn" ng-click="save()" ng-disabled="disabledScreen">
                         <i class="fas fa-check"></i> Salvar
                     </button>
                 

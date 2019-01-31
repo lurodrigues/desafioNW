@@ -5,7 +5,9 @@ $colorBack_2: #f5f7fa;
 $colorFont_1: #aab2bd;
 $colorFont_2: #646464;
 $colorFont_3: #8f9194;
-$colorActive: #007bff;
+$colorFont_4: #ced4da;
+$colorActive1: #007bff;
+$colorActive2: #75b8ff;
 
 
 /* -- BODY -- */
@@ -242,7 +244,7 @@ body{
         &title{
             font-size: 20px;
             font-weight: bold;
-            color: $colorActive;
+            color: $colorActive1;
         }
         
         &image_ {
@@ -258,14 +260,23 @@ body{
                 padding : 40px;
                 display : inline-block;
                 border  : 3px solid $colorBack_2;
+                opacity : 0.3; 
 
                 background-repeat   : no-repeat;
                 background-position : center;
+                
+                &:hover{
+                    border-color: $colorFont_4;
+                    opacity : 1; 
+                }
             }
             
             &active {
-                border-color: $colorFont_1;
+                border-color: $colorActive2;
+                opacity : 1;
             }
+            
+            
         }
         
     }
@@ -274,13 +285,12 @@ body{
 
 .dropdown {
     
-    
     &__{
         
         &toggle{
             width: 100%;
-            color: #495057;
-            border-color: #ced4da;
+            color: $colorFont_2;
+            border-color: $colorFont_4;
              
             
             &::after {
@@ -288,13 +298,23 @@ body{
                 margin-top: 10px
             }
             &:hover, &:focus, &:active{
-                border-color: #ced4da !important;
-                background: white;
+                border-color: $colorFont_4 !important;
+                background  : $colorBack_1;
             }
         }
         
         &span {
             float: left;
+            
+                font-size: 12px;
+                padding: 2px;
+                padding-left: 0px;
+                height: 24px;
+                width: calc(100% - 15px);
+                color: $colorFont_3;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             
         }
         
@@ -305,9 +325,61 @@ body{
     }
 }
 
-.alert {
-    margin: 40px 20px 0px 20px;
+
+.menu-speciality {
+    
+    &_{
+        
+        &input{
+            display: none;
+            
+            &:checked {
+                
+                & + .menu-speciality_label {
+                    background: $colorActive2;
+                    color     : $colorBack_1;
+                    
+                    & > .menu-speciality_check{
+                        display: block;
+                    }
+                    
+                     &:hover{
+                        background: $colorFont_4;
+                        color: $colorFont_2;
+                    }
+                }
+            }
+        }
+        
+        &label{
+            font-size: 16px;
+            margin-bottom: 5px;
+            padding-left: 10px;
+            cursor: pointer;
+            display: block;
+            height: 35px;
+            padding-top: 5px;
+            
+            &:hover{
+                background: $colorFont_4;
+//                color: $colorBack_1;
+            }
+            
+        }
+        
+        &check{
+            display: none;
+            float: right;
+            margin-right: 10px;
+            margin-top: 4px;
+            
+       }
+    }
 }
+
+
+
+
 
 
 
